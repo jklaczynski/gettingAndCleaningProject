@@ -12,6 +12,3 @@ Where:
  Activity is the what the observed individual was doing when objservations were made
  Average  is the average of the observed data for the given activity / given subject
  SD.Mean  is the average of the standard deviation of the given activity / given subject
-
-
-
