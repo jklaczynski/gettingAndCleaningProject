@@ -40,6 +40,8 @@ runAnalysis <- function()
   subjects1 <- read.table("test/subject_test.txt");
   subjects2 <- read.table("train/subject_train.txt");
 
+  # read the column description file
+  
   # note - we are NOT reading in the sensor signal data since the analysis for this assignment does
   # not require it, if we were to do so, however, the steps shown below would be identical to
   # the processing of the xData
@@ -58,26 +60,32 @@ runAnalysis <- function()
 
   ## Assignment - Part 2 - Extract only the MEAN and STANDARD DEVIATION
 
-  ## Not proud of this, but I could not get mutate() to work the way I wanted.
-  xDataMatrix = as.matrix(xData)   # Change to a matrix easily pull a 'horizontal' vector
 
-  for (i in 1:nrow(xDataMatrix))   # for each row in the dataset
-  {
-    Mean[i] <- mean(xDataMatrix[i,])   # Calculate mean
-    SD[i] <- sd(xDataMatrix[i,])       # Calculate SD
-  }
 
+  validColumns1 <- grep ("mean", features[,2], ignore.case=TRUE)
+  validColumns2 <- grep ("std",  features[,2], ignore.case=TRUE)
+  validColumns <- c(validColumns1, validColumns2);
+
+  validNames <- features[validColumns, 2]
+ 
   ## Assignment Part 3 - Change activity numbers into names
   yDataNamed <- mutate(yData, Label=activityLabels$V2[V1])
 
   ## Assignment - Part 4 - create the simplified data set
-  summaryTable <<- data.frame(Subject=subjects$V1, Activity=yDataNamed$Label, Average=Mean, StandardDeviation=SD)
+  xDataMatrix = as.matrix(xData)   # Change to a matrix easily pull a 'horizontal' vector
+  summaryTable <<- data.frame(Subject=subjects$V1, Activity=yDataNamed$Label, 
+                            xDataMatrix[,validColumns]);
 
-  ## Assignment - Part 5 - create tidy dataset 
-  tidyTable <<- summarize(group_by(summaryTable, Subject, Activity), 
-                          Average=mean(Average), SD.Mean=mean(StandardDeviation))
+  for (i in 1:length(validNames))
+  {
+    colnames(summaryTable)[i+2] = as.character(validNames[i])
+  } 
 
-  write.table(tidyTable, "tidyTable.csv", sep=",", row.names=FALSE);
+  ## Assignment - Part 5 - create tidy dataset? 
+  tidyTable <<- summarize(group_by(summaryTable, Subject, Activity) ) 
+                          
+
+  write.table(tidyTable, "tidyTable.csv.txt", sep=",", row.names=FALSE);
 
   print ("Analysis complete - see tables:  summaryTable");
   print ("                            and  tidyTable");
