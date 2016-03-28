@@ -1,23 +1,24 @@
-##
+## <br>
+ <br>
+README file for week 4 assingment in Getting and Cleaning Data <br>
+ <br>
+## This script assumes we're running in the directory that has the already unzipped files <br>
+## from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip <br>
+## Within this directory, two sub-directories exist - train and test  <br>
+## These directories contain identical filenames (but not data) - these are all merged into one <br>
+## easy to use, well labeled table. <br>
+##  <br>
+##  <br>
+To run the analysis and create the summary and tidy tables, <br>
+(1) Get and unpack (unzip) the data from the URL above <br>
+(2) Source the "R" script from within R:  source run_analysis.R <br>
+(3) Execute the script by typing: runAnalysis() <br> <br>
 
-README file for week 4 assingment in Getting and Cleaning Data
 
-## This script assumes we're running in the directory that has the already unzipped files
-## from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
-## Within this directory, two sub-directories exist - train and test 
-## These directories contain identical filenames (but not data) - these are all merged into one
-## easy to use, well labeled table.
-## 
-## 
-To run the analysis and create the summary and tidy tables,
-(1) Get and unpack (unzip) the data from the URL above
-(2) Source the "R" script from within R:  source run_analysis.R
-(3) Execute the script by typing: runAnalysis()
+When the script is executed two tables will be created: <br>
+  summaryTable - this contains the merged data <br>
+  tidyTable - contains the tidy dataset requested in step 5 of the assignment <br> <br>
 
-When the script is executed two tables will be created:
-  summaryTable - this contains the merged data
-  tidyTable - contains the tidy dataset requested in step 5 of the assignment
+finally, the tidyTable is written as a csv file "tidyTable.csv" <br> <br>
 
-finally, the tidyTable is written as a csv file "tidyTable.csv"
-
-The field descriptions in this file may be found in Codebook.md
+The field descriptions in this file may be found in Codebook.md <br>
